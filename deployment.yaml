@@ -1,0 +1,19 @@
+apiVersion: apps/v1  # Specifies the API version for the deployment object.
+kind: Deployment     # The kind of object being created (Deployment).
+metadata:
+  name: iris-predictor-deployment  # Name of the deployment.
+spec:
+  replicas: 1  # Number of pod replicas to run; here, it's just one.
+  selector:
+    matchLabels:
+      app: iris-fastapi-service  # Selects pods with the label app=iris-fastapi-service.
+  template:
+    metadata:
+      labels:
+        app: iris-fastapi-service  # Labels used to identify and match pods.
+    spec:
+      containers:
+      - name: iris-fastapi-service  # Name of the container.
+        image: vin1652/iris-fastapi-service:v1  # Image to use for the container.
+        ports:
+        - containerPort: 80  # Exposes port 80 inside the container.

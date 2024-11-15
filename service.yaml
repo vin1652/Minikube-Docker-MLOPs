@@ -1,0 +1,12 @@
+apiVersion: v1  # API version for the Service object.
+kind: Service    # The kind of object being created (Service).
+metadata:
+  name: iris-predictor-service  # Name of the service.
+spec:
+  selector:
+    app: iris-fastapi-service  # Matches pods with this label.
+  ports:
+    - protocol: TCP
+      port: 80  # The port on the service.
+      targetPort: 80  # The port on the pod/container that the service forwards to.
+  type: LoadBalancer  # Exposes the service externally with a public IP.
